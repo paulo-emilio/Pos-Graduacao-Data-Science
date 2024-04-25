@@ -1,0 +1,110 @@
+connect hr/hr
+
+CREATE TABLE dept1(
+	deptno 	NUMBER(2) primary key, 
+  	dname 	VARCHAR2(14), 
+	loc 	VARCHAR2(20) );
+
+select * from dept1;
+
+insert into dept1 values (1,'comercial','SP');
+insert into dept1 values (2,'financeiro','RJ');
+insert into dept1 values (3,'comercial','MG');
+insert into dept1 values (4,'gerencia','SP');
+commit;
+
+select * from dept1;
+
+create table dias_semana(
+id number(3),
+day varchar2(10),
+dia  varchar2(10));
+
+INSERT ALL
+  INTO dias_semana (id, day, dia) VALUES (1, 'sun', 'domingo')
+  INTO dias_semana (id, day, dia) VALUES (2, 'mon', 'segunda')
+  INTO dias_semana (id, day, dia) VALUES (3, 'tue', 'terca')
+  INTO dias_semana (id, day, dia) VALUES (4, 'wed', 'quarta')
+  INTO dias_semana (id, day, dia) VALUES (5, 'thu', 'quinta')
+  INTO dias_semana (id, day, dia) VALUES (6, 'fri', 'sexta')
+  INTO dias_semana (id, day, dia) VALUES (7, 'fri', 'sabado')
+select * from dual;
+select * from dias_semana;
+
+
+select * from dept1;
+create table dept2 as select * from dept1;
+select * from dept2;
+
+
+insert into dept2 (select * from dept1);
+select * from dept2;
+
+select * from dias_semana;
+
+create table dest_tab1(
+id number(3),
+description varchar2(30));
+
+
+INSERT ALL
+  WHEN id <= 2 THEN
+    INTO dest_tab1 (id, description) VALUES (id, day)
+    WHEN id > 4 THEN
+    INTO dest_tab1 (id, description) VALUES (id, day)
+SELECT id, day
+FROM   dias_semana;
+
+
+select * from dest_tab1;
+
+
+create table dest_tab2(
+id number(3),
+description varchar2(30));
+
+create table dest_tab3(
+id number(3),
+description varchar2(30));
+
+INSERT ALL
+  WHEN id <= 2 THEN
+    INTO dest_tab2 (id, description) VALUES (id, dia)
+    WHEN id > 4 THEN
+    INTO dest_tab3 (id, description) VALUES (id, dia)
+SELECT id, dia
+FROM   dias_semana;
+select * from dest_tab2;
+select * from dest_tab3;
+
+
+	md c:\descomplica
+	coloque o arquivo sexo.csv no diretório descomplica     
+        conn system/oracle
+
+	CREATE OR REPLACE DIRECTORY descomplica_dir AS 'c:\descomplica';
+       
+        GRANT READ, WRITE ON DIRECTORY descomplica_dir TO hr;       
+       alter user hr identified by hr account unlock;
+
+
+        CREATE TABLE sexo_externa
+        (
+            ID varchar2(3),
+            NOME varchar2(50),   
+            sexo varchar2(10)
+        )
+        ORGANIZATION EXTERNAL
+        (
+          TYPE ORACLE_LOADER
+          DEFAULT DIRECTORY descomplica_DIR
+          ACCESS PARAMETERS
+              (
+                RECORDS DELIMITED BY NEWLINE
+                FIELDS TERMINATED BY ','
+              )
+        LOCATION ('sexo.csv')
+        );   
+SELECT * FROM sexo_externa;
+
+
