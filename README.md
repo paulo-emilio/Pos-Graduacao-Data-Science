@@ -3,8 +3,6 @@
 ## Sobre o curso
 A Pós-graduação em Data Science da Descomplica é um curso reconhecido pelo MEC que oferece uma formação abrangente e atualizada em ciência de dados, com aulas que combinam teoria e prática para capacitar os participantes com habilidades técnicas avançadas e de gestão. O curso cobre tópicos essenciais como estatística aplicada, programação em Python, aprendizado de máquina, redes neurais, deep learning, e ciência de redes, além de técnicas de coleta e tratamento de dados, métodos de inteligência artificial e análise de dados para resolver problemas complexos e apoiar a tomada de decisões no mercado de trabalho.
 
-![Certificado](Microcertificados/Certificado-de-conclusao.png)
-
 ## Módulo 1 
 
 ### Statistics for Data Science - 30h
